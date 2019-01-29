@@ -1,0 +1,4 @@
+- name: executando minah primeira role
+  hosts: all
+  roles:
+   - base

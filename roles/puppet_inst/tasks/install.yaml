@@ -1,0 +1,10 @@
+- name: instalando o puppet
+  package:
+   name: puppetserver
+   update_cache: yes  #atualiza o repositorio se nao botar instala o puppet 3
+  when: ansible_hostname == "devops"
+
+- name: instalando o puppet-agent
+  package:
+    name: puppet-agent
+    update_cache: yes

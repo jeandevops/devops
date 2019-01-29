@@ -1,0 +1,4 @@
+- name: criando primeira infra as a code full aggressive
+  hosts: all
+  roles:
+   - web

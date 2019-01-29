@@ -1,0 +1,8 @@
+- name: fazendo o deploy da minha maquina
+  hosts: docker
+  tasks:
+   - name: copiando o arquivo do meu site
+     copy:
+     #Se for diretorio use syncronize
+       src: /opt/jenkins/workspace/deploy/index.html
+       dest: /srv/site/

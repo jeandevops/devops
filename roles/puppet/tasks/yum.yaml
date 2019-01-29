@@ -1,0 +1,4 @@
+- nome: atualiza e instala puppet via yum
+  yum:
+    name: https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+    update_cache: yes

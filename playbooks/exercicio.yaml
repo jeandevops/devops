@@ -1,0 +1,44 @@
+- name: exercicios
+  hosts: all
+  vars:
+   nome_usuario: "jean"
+  tasks:
+   - name: cria 3 usuarios em todas as maquinas developer, suporte e <variavel>
+     user:
+       name: "{{ item.nome }}"
+       password: "{{ item.pass }}"
+       shell: "{{ item.sh }}"
+     with_items:
+      - { nome: developer, pass: '$1$94PDUsOO$FNwZVRL7bBY1VS2WJyU3h/', sh: "/bin/bash" }
+      - { nome: suporte, pass: '$1$94PDUsOO$FNwZVRL7bBY1VS2WJyU3h/', sh: "/bin/bash" }
+      - { nome: "{{ nome_usuario }}", pass: '$1$94PDUsOO$FNwZVRL7bBY1VS2WJyU3h/', sh: "/bin/bash" }
+
+   - name: cria um arquivo com o conteudo soudevops e envia ele para tmp infraagil
+     file:
+      path: "{{ item.arquivo }}"
+      state: "{{ item.tipo }}"
+     with_items:
+       - { arquivo: /tmp/devops, tipo: directory }
+  #    - { arquivo: /tmp/devops/file, tipo: touch } não precisa por conta do create no bloco de baixo
+
+   - name: colocando conteudo no arquivo
+     blockinfile:
+      create: yes
+      path: /tmp/devops/file
+      block: |
+       sou devops
+       bloco de conteudo
+       aeew
+
+   - name: garantir os pacotes basicos em debian git vim e figlet e garantir os pacotes basicos em centos epelrelease git e vim
+     #package nao diferencia instalador, hehe...
+     package:
+      name: "{{ item.pacote }}"
+     when: ansible_os_family == item.distro
+     with_items:
+       - { pacote: git, distro: Debian }
+       - { pacote: figlet, distro: Debian }
+       - { pacote: vim, distro: Debian }
+       - { pacote: git, distro: RedHat }
+       - { pacote: epel-release, distro: RedHat }
+       - { pacote: vim, distro: RedHat }

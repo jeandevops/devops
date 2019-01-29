@@ -1,0 +1,4 @@
+- name: atualiza repositorios e instala o puppet em Debian
+  apt:
+    name: https://apt.puppetlabs.com/puppet5-release-xenial.deb
+    update_cache: yes

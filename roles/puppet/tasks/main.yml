@@ -1,0 +1,9 @@
+---
+# tasks file for puppet
+
+- name: Atualiza repositorios
+   include: "{{ modulo }}"
+  when: ansible_os_family == item.distro
+  with_items:
+   - { modulo: apt.yaml, distro: "Debian" }
+   - { modulo: yum.yaml, distro: "RedHat" } 

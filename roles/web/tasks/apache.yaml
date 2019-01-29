@@ -1,0 +1,8 @@
+- name: instala apache
+  package: 
+   name: "{{ item.pacote }}" 
+  when: ansible_os_family == item.distro 
+  with_items: 
+   - { pacote: apache2, distro: "Debian" } 
+   - { pacote: httpd, distro: "RedHat" } 
+  notify: start_centos

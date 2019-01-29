@@ -1,0 +1,11 @@
+---
+# tasks file for web
+
+- name: Instala apache
+  include: apache.yaml
+
+- name: Cria arquivos
+  include: site.yaml
+
+#- name: Teste
+#  include: teste.yaml
